@@ -4,7 +4,6 @@
 }
 
 
-
 <h2>Price Compare</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
@@ -33,9 +32,11 @@
         <div id="googleMap" style="width:800px;height:800px;"></div>
     </div>
 </div>
-
-@Scripts.Render("~/Scripts/SearchAddress.js")
+ 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ2b3ucOfoCQrm3eqU8qC-1EKP_P2Sh2M&callback=myMap"></script>
+<script src="~/Scripts/SearchAddress.js"></script>
+ 
+
 
 <div class="row">
     <div class="col-md-4">
