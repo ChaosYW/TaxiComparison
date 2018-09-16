@@ -9,6 +9,7 @@ namespace Taxi.Controllers
     public class SearchAddressController : Controller
     {
         // GET: SearchAddress
+        [Authorize]
         public ActionResult Index()
         {
             return View();

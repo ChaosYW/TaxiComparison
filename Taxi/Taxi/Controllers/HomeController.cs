@@ -10,6 +10,10 @@ namespace Taxi.Controllers
     {
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "SearchAddress");
+            }
             return View();
         }
 
