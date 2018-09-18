@@ -4,47 +4,64 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TaxiCompareModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'TaxiCompare.dbo.Table_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Table_1">
-          <Property Name="a" Type="nchar" MaxLength="10" />
-        </EntityType>-->
+    <Schema Namespace="TaxiCompareModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Taxi Prices">
           <Key>
-            <PropertyRef Name="Created On" />
+            <PropertyRef Name="CreatedOn" />
           </Key>
           <Property Name="Prices" Type="int" />
           <Property Name="State" Type="nchar" MaxLength="2" />
-          <Property Name="Created On" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Id" Type="int" />
+        </EntityType>
+        <EntityType Name="TestTable1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityContainer Name="TaxiCompareModelStoreContainer">
+          <EntitySet Name="TestTable1" EntityType="Self.TestTable1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Taxi Prices" EntityType="Self.Taxi Prices" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Taxi Prices].[Prices] AS [Prices], 
     [Taxi Prices].[State] AS [State], 
-    [Taxi Prices].[Created On] AS [Created On]
+    [Taxi Prices].[CreatedOn] AS [CreatedOn], 
+    [Taxi Prices].[Id] AS [Id]
     FROM [dbo].[Taxi Prices] AS [Taxi Prices]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TaxiCompareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TaxiCompareEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Taxi_Prices" EntityType="TaxiCompareModel.Taxi_Price" />
+          <EntitySet Name="TestTable1" EntityType="TaxiCompareModel.TestTable1" />
+        </EntityContainer>
         <EntityType Name="Taxi_Price">
           <Key>
-            <PropertyRef Name="Created_On" />
+            <PropertyRef Name="CreatedOn" />
           </Key>
           <Property Name="Prices" Type="Int32" />
           <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="TaxiCompareEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Taxi_Prices" EntityType="Self.Taxi_Price" />
-        </EntityContainer>
+        <EntityType Name="TestTable1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -54,9 +71,20 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
           <EntitySetMapping Name="Taxi_Prices">
             <EntityTypeMapping TypeName="TaxiCompareModel.Taxi_Price">
               <MappingFragment StoreEntitySet="Taxi Prices">
-                <ScalarProperty Name="Prices" ColumnName="Prices" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Created_On" ColumnName="Created On" />
+                <ScalarProperty Name="Prices" ColumnName="Prices" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestTable1">
+            <EntityTypeMapping TypeName="TaxiCompareModel.TestTable1">
+              <MappingFragment StoreEntitySet="TestTable1">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
