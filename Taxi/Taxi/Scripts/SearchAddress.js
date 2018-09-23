@@ -1,6 +1,6 @@
 ﻿
 $(document).ready(function () {
-    console.log("ready!");
+     
 
     // Start----------Initial Map function
 
@@ -37,4 +37,19 @@ $(document).ready(function () {
         });
     });
     // END----------calculate route
+    var dataSet = [
+        ["Uber", "SUV", "$20.00"],
+        ["Lyft", "Sedan", "$30.00"],
+        ["Uber", "Car Pool", "$10.00"],
+
+    ];
+    $('#tbSearchResult').DataTable({
+        data: dataSet,
+        "columnDefs": [{
+            "targets": -1,
+            "data": null,
+            "defaultContent": "<button>Click!</button>"
+        }]
+    });
 });
+
