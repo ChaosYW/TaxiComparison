@@ -200,6 +200,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SearchAddressController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +224,9 @@
       <DependentUpon>TaxiEntitydb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Taxi_Price.cs">
+      <DependentUpon>TaxiEntitydb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestTable1.cs">
       <DependentUpon>TaxiEntitydb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -308,6 +312,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SearchAddress\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutWithoutMenue.cshtml" />
+    <Content Include="Views\Test\Create.cshtml" />
+    <Content Include="Views\Test\Delete.cshtml" />
+    <Content Include="Views\Test\Details.cshtml" />
+    <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

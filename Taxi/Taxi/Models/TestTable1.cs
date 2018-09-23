@@ -12,11 +12,11 @@ namespace Taxi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Taxi_Price
+    public partial class TestTable1
     {
-        public Nullable<int> Prices { get; set; }
-        public string State { get; set; }
-        public System.DateTime CreatedOn { get; set; }
-        public Nullable<int> Id { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Nullable<decimal> Price { get; set; }
     }
 }
