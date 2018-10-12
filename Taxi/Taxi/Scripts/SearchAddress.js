@@ -1,4 +1,4 @@
-﻿
+﻿var dataSet = [];
 $(document).ready(function () {
      
 
@@ -29,6 +29,7 @@ $(document).ready(function () {
         console.log("Hello");
     });
     $("#btSearch").click(function () {
+        dataSet = [];
         var addressFrom = $("#iptFrom").val();
         var addressTo = $("#iptTo").val();
 
@@ -75,32 +76,73 @@ $(document).ready(function () {
             async: false
         });
 
-     
 
-        console.log("Start");
-        var url = "https://api.uber.com/v1/estimates/price?start_latitude="+fromlat+"&start_longitude="+fromlong+"&end_latitude="+tolat+"&end_longitude="+tolong+"&server_token=tv52A1T0X3I6osqh7zX4b76O_Usvmth6HQI5QWkp";
 
-        $.getJSON(url, function (data) {
-            console.log(data);
+
+        var Uberurl = "https://api.uber.com/v1/estimates/price?start_latitude="+fromlat+"&start_longitude="+fromlong+"&end_latitude="+tolat+"&end_longitude="+tolong+"&server_token=tv52A1T0X3I6osqh7zX4b76O_Usvmth6HQI5QWkp";
+        var Uberlist
+        $.ajax({
+            type: 'GET',
+            url: Uberurl,
+            dataType: 'json',
+            success: function (data) {
+                //colsole.log('============');
+                //console.log(data);
+                //console.log(data.length);
+                //console.log(data);
+                //for (i = 0; i < data.length; i++)
+                //{
+                //    var displayname = data[i].display_name;
+                //    var type = 'Uber';
+                //    var price = data[i].estimate;
+                //    var dataitem = { Name: displayname, Type: type, Price: price };
+                //    console.log(data[i]);
+                //    dataSet.push(dataitem);
+                //}
+                //colsole.log('============');
+                Uberlist = data.prices;
+            },
+            async: false
         });
-        console.log("Hello");
-         
+
+
+        for (i = 0; i < Uberlist.length; i++)
+        {
+            var Name = Uberlist[i].display_name;
+            var Type = 'Uber';
+            var Price = Uberlist[i].estimate;
+             
+            
+            
+            dataSet.push({
+                Name,
+                Type,
+                Price
+            });
+        }
+
+ 
+        console.log(dataSet);
+        $('#tbSearchResult').DataTable({
+            data: dataSet,
+            columns: [
+                { data: 'Name' },
+                { data: 'Type' },
+                { data: 'Price' },
+                 
+                {
+                    "data": "first_name", // can be null or undefined
+                    "defaultContent": "<div class='btn-group'> <button type='button' class='btn btn-info btn-xs dt-view' style='margin - right: 16px; '><span class='glyphicon glyphicon-eye - open glyphicon-info - sign' aria-hidden='true'></span></button>  </div>'"
+                }
+                
+            ]
+
+             
+        });
     });
     // END----------calculate route
-    var dataSet = [
-        ["Uber", "SUV", "$20.00"],
-        ["Lyft", "Sedan", "$30.00"],
-        ["Uber", "Car Pool", "$10.00"],
-
-    ];
-    $('#tbSearchResult').DataTable({
-        data: dataSet,
-        "columnDefs": [{
-            "targets": -1,
-            "data": null,
-            "defaultContent": "<button>Click!</button>"
-        }]
-    });
+   
+    
 });
 
 
