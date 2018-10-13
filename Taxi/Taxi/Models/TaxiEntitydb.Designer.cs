@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\usawa\source\repos\TaxiComparison\Taxi\Taxi\Models\TaxiEntitydb.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Yu\Source\Repos\TaxiComparison\Taxi\Taxi\Models\TaxiEntitydb.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -201,6 +201,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SearchAddressController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="DataAccessLayer\TaxiOrderBZ.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,6 +223,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TaxiEntitydb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaxiOrder.cs">
+      <DependentUpon>TaxiEntitydb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Taxi_Price.cs">
       <DependentUpon>TaxiEntitydb.tt</DependentUpon>

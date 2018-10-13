@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Taxi.Models;
+using Microsoft.AspNet.Identity;
+using Taxi.DataAccessLayer;
 
 namespace Taxi.Controllers
 {
@@ -85,6 +88,14 @@ namespace Taxi.Controllers
             {
                 return View();
             }
+        }
+        [HttpPost]
+        public ActionResult saveTaxiOrder(TaxiOrder order)
+        {
+            string usernemail = User.Identity.Name;
+            order.UserName = usernemail;
+            TaxiOrderBZ.insertTaxiOrder(order);
+            return View();
         }
     }
 }

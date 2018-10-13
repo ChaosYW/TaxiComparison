@@ -7,6 +7,7 @@
       <Diagram DiagramId="f6b9b6603b854cff86579233520b440e" Name="Diagram1">
         <EntityTypeShape EntityType="TaxiCompareModel.Taxi_Price" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="TaxiCompareModel.TestTable1" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TaxiCompareModel.TaxiOrder" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

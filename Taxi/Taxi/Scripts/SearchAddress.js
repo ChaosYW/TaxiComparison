@@ -1,7 +1,7 @@
 ﻿var dataSet = [];
 $(document).ready(function () {
      
-
+  
     // Start----------Initial Map function
 
     var directionsService = new google.maps.DirectionsService();
@@ -104,42 +104,69 @@ $(document).ready(function () {
             },
             async: false
         });
-
+        console.log(Uberlist);
 
         for (i = 0; i < Uberlist.length; i++)
         {
-            var Name = Uberlist[i].display_name;
-            var Type = 'Uber';
+            var CarType = Uberlist[i].display_name;
+            var ServiceName = 'Uber';
             var Price = Uberlist[i].estimate;
-             
-            
+            var Distance = Uberlist[i].distance;
+            var Product_id = Uberlist[i].product_id;
+            var HighPrice = Uberlist[i].high_estimate;
+            var LowPrice = Uberlist[i].low_estimate;
             
             dataSet.push({
-                Name,
-                Type,
-                Price
+                CarType,
+                ServiceName,
+                Price,
+                Distance,
+                Product_id,
+                HighPrice,
+                LowPrice
             });
         }
 
  
         console.log(dataSet);
-        $('#tbSearchResult').DataTable({
+        var searchtable = $('#tbSearchResult').DataTable({
             data: dataSet,
             columns: [
-                { data: 'Name' },
-                { data: 'Type' },
+                { data: 'CarType' },
+                { data: 'ServiceName' },
                 { data: 'Price' },
-                 
+                { data: 'Distance', "visible": false, },
+                { data: 'Product_id', "visible": false, },
+                { data: 'HighPrice', "visible": false, },
+                { data: 'LowPrice', "visible": false, },
                 {
-                    "data": "first_name", // can be null or undefined
-                    "defaultContent": "<div class='btn-group'> <button type='button' class='btn btn-info btn-xs dt-view' style='margin - right: 16px; '><span class='glyphicon glyphicon-eye - open glyphicon-info - sign' aria-hidden='true'></span></button>  </div>'"
+                    "data": null, // can be null or undefined
+                    "defaultContent": "<button>Click!</button>"
                 }
                 
             ]
 
              
         });
+        $('#tbSearchResult tbody').on('click', 'button', function () {
+            var data = searchtable.row($(this).parents('tr')).data();
+            console.log(JSON.stringify(data));
+            $.ajax({
+                url: "SearchAddress/saveTaxiOrder",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    console.log("Successfully saved");
+                }
+            });
+         
+         
+        });
+        
     });
+
+    
     // END----------calculate route
    
     
