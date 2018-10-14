@@ -1,4 +1,7 @@
 ﻿var dataSet = [];
+var addressFrom;
+var addressTo;
+var fromlong, fromlat, tolong, tolat;
 $(document).ready(function () {
      
   
@@ -29,9 +32,12 @@ $(document).ready(function () {
         console.log("Hello");
     });
     $("#btSearch").click(function () {
+
+        clearDataTable();
+
         dataSet = [];
-        var addressFrom = $("#iptFrom").val();
-        var addressTo = $("#iptTo").val();
+        addressFrom = $("#iptFrom").val();
+        addressTo = $("#iptTo").val();
 
         var request = {
             origin: addressFrom,
@@ -45,7 +51,7 @@ $(document).ready(function () {
             }
         });
 
-        var fromlong, fromlat, tolong, tolat;
+        
        
         var googleFromURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+addressFrom+"&key=AIzaSyDZ2b3ucOfoCQrm3eqU8qC-1EKP_P2Sh2M";
 
@@ -141,7 +147,7 @@ $(document).ready(function () {
                 { data: 'LowPrice', "visible": false, },
                 {
                     "data": null, // can be null or undefined
-                    "defaultContent": "<button>Click!</button>"
+                    "defaultContent": "<button>Click to Order</button>"
                 }
                 
             ]
@@ -158,7 +164,7 @@ $(document).ready(function () {
                 dataType: "json",
                 data: JSON.stringify(data),
                 success: function (response) {
-                    console.log("Successfully saved");
+                    alert("Successfully saved");
                 }
             });
          
@@ -175,3 +181,13 @@ $(document).ready(function () {
 
 
 
+function clearDataTable() {
+     
+    var table = $('#tbSearchResult').DataTable();
+
+    //clear datatable
+    table.clear().draw();
+
+    //destroy datatable
+    table.destroy();
+}
