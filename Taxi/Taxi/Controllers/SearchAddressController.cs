@@ -95,7 +95,7 @@ namespace Taxi.Controllers
             string usernemail = User.Identity.Name;
             order.UserName = usernemail;
             TaxiOrderBZ.insertTaxiOrder(order);
-            return View();
+            return Json("Success");
         }
     }
 }

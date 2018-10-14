@@ -154,7 +154,8 @@ $(document).ready(function () {
             $.ajax({
                 url: "SearchAddress/saveTaxiOrder",
                 type: "POST",
-                contentType: "application/json",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 data: JSON.stringify(data),
                 success: function (response) {
                     console.log("Successfully saved");
