@@ -29,19 +29,16 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
           <Property Name="LowPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="CarType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Distance" Type="float" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TestTable1">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Description" Type="varchar" MaxLength="50" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AddressFrom" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="AddressTo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FromLong" Type="float" Nullable="false" />
+          <Property Name="FromLat" Type="float" Nullable="false" />
+          <Property Name="ToLong" Type="float" Nullable="false" />
+          <Property Name="ToLat" Type="float" Nullable="false" />
+          <Property Name="SearchDateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="TaxiCompareModelStoreContainer">
           <EntitySet Name="TaxiOrder" EntityType="Self.TaxiOrder" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TestTable1" EntityType="Self.TestTable1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Taxi Prices" EntityType="Self.Taxi Prices" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Taxi Prices].[Prices] AS [Prices], 
@@ -57,7 +54,6 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
       <Schema Namespace="TaxiCompareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="TaxiCompareEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Taxi_Prices" EntityType="TaxiCompareModel.Taxi_Price" />
-          <EntitySet Name="TestTable1" EntityType="TaxiCompareModel.TestTable1" />
           <EntitySet Name="TaxiOrders" EntityType="TaxiCompareModel.TaxiOrder" />
         </EntityContainer>
         <EntityType Name="Taxi_Price">
@@ -68,15 +64,6 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
           <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Id" Type="Int32" />
-        </EntityType>
-        <EntityType Name="TestTable1">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TaxiOrder">
           <Key>
@@ -91,6 +78,13 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
           <Property Name="LowPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="CarType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Distance" Type="Double" Nullable="false" />
+          <Property Name="AddressFrom" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AddressTo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FromLong" Type="Double" Nullable="false" />
+          <Property Name="FromLat" Type="Double" Nullable="false" />
+          <Property Name="ToLong" Type="Double" Nullable="false" />
+          <Property Name="ToLat" Type="Double" Nullable="false" />
+          <Property Name="SearchDateTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -108,19 +102,16 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TestTable1">
-            <EntityTypeMapping TypeName="TaxiCompareModel.TestTable1">
-              <MappingFragment StoreEntitySet="TestTable1">
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TaxiOrders">
             <EntityTypeMapping TypeName="TaxiCompareModel.TaxiOrder">
               <MappingFragment StoreEntitySet="TaxiOrder">
+                <ScalarProperty Name="SearchDateTime" ColumnName="SearchDateTime" />
+                <ScalarProperty Name="ToLat" ColumnName="ToLat" />
+                <ScalarProperty Name="ToLong" ColumnName="ToLong" />
+                <ScalarProperty Name="FromLat" ColumnName="FromLat" />
+                <ScalarProperty Name="FromLong" ColumnName="FromLong" />
+                <ScalarProperty Name="AddressTo" ColumnName="AddressTo" />
+                <ScalarProperty Name="AddressFrom" ColumnName="AddressFrom" />
                 <ScalarProperty Name="Distance" ColumnName="Distance" />
                 <ScalarProperty Name="CarType" ColumnName="CarType" />
                 <ScalarProperty Name="LowPrice" ColumnName="LowPrice" />

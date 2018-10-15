@@ -94,6 +94,7 @@ namespace Taxi.Controllers
         {
             string usernemail = User.Identity.Name;
             order.UserName = usernemail;
+            order.SearchDateTime = DateTime.Now;
             TaxiOrderBZ.insertTaxiOrder(order);
             return Json("Success");
         }

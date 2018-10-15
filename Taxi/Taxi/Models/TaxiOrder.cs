@@ -11,7 +11,7 @@ namespace Taxi.Models
 {
     using System;
     using System.Collections.Generic;
-    [Serializable]
+    
     public partial class TaxiOrder
     {
         public int Id { get; set; }
@@ -23,5 +23,12 @@ namespace Taxi.Models
         public decimal LowPrice { get; set; }
         public string CarType { get; set; }
         public double Distance { get; set; }
+        public string AddressFrom { get; set; }
+        public string AddressTo { get; set; }
+        public double FromLong { get; set; }
+        public double FromLat { get; set; }
+        public double ToLong { get; set; }
+        public double ToLat { get; set; }
+        public System.DateTime SearchDateTime { get; set; }
     }
 }

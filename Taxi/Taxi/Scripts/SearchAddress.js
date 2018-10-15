@@ -1,12 +1,12 @@
-﻿var dataSet = [];
-var addressFrom;
-var addressTo;
-var fromlong, fromlat, tolong, tolat;
+﻿
 $(document).ready(function () {
      
   
     // Start----------Initial Map function
-
+    var dataSet = [];
+    var AddressFrom;
+    var AddressTo;
+    var FromLong, FromLat, ToLong, ToLat;
     var directionsService = new google.maps.DirectionsService();
     var directionsDisplay = new google.maps.DirectionsRenderer();
     var defaultCenterMap = new google.maps.LatLng(40.737209, -73.819660);
@@ -36,12 +36,12 @@ $(document).ready(function () {
         clearDataTable();
 
         dataSet = [];
-        addressFrom = $("#iptFrom").val();
-        addressTo = $("#iptTo").val();
+        AddressFrom = $("#iptFrom").val();
+        AddressTo = $("#iptTo").val();
 
         var request = {
-            origin: addressFrom,
-            destination: addressTo,
+            origin: AddressFrom,
+            destination: AddressTo,
             travelMode: 'DRIVING'
         };
 
@@ -53,15 +53,15 @@ $(document).ready(function () {
 
         
        
-        var googleFromURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+addressFrom+"&key=AIzaSyDZ2b3ucOfoCQrm3eqU8qC-1EKP_P2Sh2M";
+        var googleFromURL = "https://maps.googleapis.com/maps/api/geocode/json?address="+AddressFrom+"&key=AIzaSyDZ2b3ucOfoCQrm3eqU8qC-1EKP_P2Sh2M";
 
         $.ajax({
             type: 'GET',
             url: googleFromURL,
             dataType: 'json',
             success: function (data) {
-                fromlat = data.results[0].geometry.location.lat;
-                fromlong = data.results[0].geometry.location.lng;
+                FromLat = data.results[0].geometry.location.lat;
+                FromLong = data.results[0].geometry.location.lng;
             },
             async: false
         });
@@ -69,15 +69,15 @@ $(document).ready(function () {
         
          
 
-        var googleToURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressTo + "&key=AIzaSyDZ2b3ucOfoCQrm3eqU8qC-1EKP_P2Sh2M";
+        var googleToURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + AddressTo + "&key=AIzaSyDZ2b3ucOfoCQrm3eqU8qC-1EKP_P2Sh2M";
 
         $.ajax({
             type: 'GET',
             url: googleToURL,
             dataType: 'json',
             success: function (data) {
-                tolat = data.results[0].geometry.location.lat;
-                tolong = data.results[0].geometry.location.lng;
+                ToLat = data.results[0].geometry.location.lat;
+                ToLong = data.results[0].geometry.location.lng;
             },
             async: false
         });
@@ -85,7 +85,7 @@ $(document).ready(function () {
 
 
 
-        var Uberurl = "https://api.uber.com/v1/estimates/price?start_latitude="+fromlat+"&start_longitude="+fromlong+"&end_latitude="+tolat+"&end_longitude="+tolong+"&server_token=tv52A1T0X3I6osqh7zX4b76O_Usvmth6HQI5QWkp";
+        var Uberurl = "https://api.uber.com/v1/estimates/price?start_latitude="+FromLat+"&start_longitude="+FromLong+"&end_latitude="+ToLat+"&end_longitude="+ToLong+"&server_token=tv52A1T0X3I6osqh7zX4b76O_Usvmth6HQI5QWkp";
         var Uberlist
         $.ajax({
             type: 'GET',
@@ -129,7 +129,13 @@ $(document).ready(function () {
                 Distance,
                 Product_id,
                 HighPrice,
-                LowPrice
+                LowPrice,
+                AddressFrom,
+                AddressTo,
+                FromLat,
+                FromLong,
+                ToLat,
+                ToLong
             });
         }
 
@@ -141,10 +147,10 @@ $(document).ready(function () {
                 { data: 'CarType' },
                 { data: 'ServiceName' },
                 { data: 'Price' },
-                { data: 'Distance', "visible": false, },
-                { data: 'Product_id', "visible": false, },
-                { data: 'HighPrice', "visible": false, },
-                { data: 'LowPrice', "visible": false, },
+                { data: 'Distance', "visible": false },
+                { data: 'Product_id', "visible": false },
+                { data: 'HighPrice', "visible": false },
+                { data: 'LowPrice', "visible": false },
                 {
                     "data": null, // can be null or undefined
                     "defaultContent": "<button>Click to Order</button>"
