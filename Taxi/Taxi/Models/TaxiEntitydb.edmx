@@ -37,8 +37,18 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
           <Property Name="ToLat" Type="float" Nullable="false" />
           <Property Name="SearchDateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="TestTable1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
         <EntityContainer Name="TaxiCompareModelStoreContainer">
           <EntitySet Name="TaxiOrder" EntityType="Self.TaxiOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestTable1" EntityType="Self.TestTable1" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Taxi Prices" EntityType="Self.Taxi Prices" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Taxi Prices].[Prices] AS [Prices], 
@@ -55,6 +65,7 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
         <EntityContainer Name="TaxiCompareEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Taxi_Prices" EntityType="TaxiCompareModel.Taxi_Price" />
           <EntitySet Name="TaxiOrders" EntityType="TaxiCompareModel.TaxiOrder" />
+          <EntitySet Name="TestTable1" EntityType="TaxiCompareModel.TestTable1" />
         </EntityContainer>
         <EntityType Name="Taxi_Price">
           <Key>
@@ -85,6 +96,15 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
           <Property Name="ToLong" Type="Double" Nullable="false" />
           <Property Name="ToLat" Type="Double" Nullable="false" />
           <Property Name="SearchDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TestTable1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -120,6 +140,16 @@ warning 6002: The table/view 'TaxiCompare.dbo.Taxi Prices' does not have a prima
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestTable1">
+            <EntityTypeMapping TypeName="TaxiCompareModel.TestTable1">
+              <MappingFragment StoreEntitySet="TestTable1">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

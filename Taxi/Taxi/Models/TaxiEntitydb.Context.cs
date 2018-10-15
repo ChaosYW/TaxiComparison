@@ -26,7 +26,7 @@ namespace Taxi.Models
         }
     
         public virtual DbSet<Taxi_Price> Taxi_Prices { get; set; }
-        public virtual DbSet<TestTable1> TestTable1 { get; set; }
         public virtual DbSet<TaxiOrder> TaxiOrders { get; set; }
+        public virtual DbSet<TestTable1> TestTable1 { get; set; }
     }
 }
