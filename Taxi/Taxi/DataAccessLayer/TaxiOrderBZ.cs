@@ -16,5 +16,14 @@ namespace Taxi.DataAccessLayer
                 db.SaveChanges();
             }
         }
+
+        public static IEnumerable<TaxiOrder> getOrderHistorybyUsername(string username)
+        {
+            TaxiCompareEntities db = new TaxiCompareEntities();
+                
+            IEnumerable<TaxiOrder> list =  db.TaxiOrders.Where(a => a.UserName == username).OrderByDescending(a => a.SearchDateTime);
+            return list;
+            
+        }
     }
 }

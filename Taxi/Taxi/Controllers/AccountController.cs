@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Taxi.Models;
+using Taxi.DataAccessLayer;
+using System.Collections.Generic;
+
 
 namespace Taxi.Controllers
 {
@@ -481,5 +484,14 @@ namespace Taxi.Controllers
             }
         }
         #endregion
+
+        [Authorize]
+        public ActionResult OrderHistory()
+        {
+            string usernemail = User.Identity.Name;
+            IEnumerable<TaxiOrder> result = TaxiOrderBZ.getOrderHistorybyUsername(usernemail);
+            return View(result);
+
+        }
     }
 }
