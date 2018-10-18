@@ -24,10 +24,11 @@ $(document).ready(function () {
     // Calculate Route
     $("#btTest").click(function () {
         
-        var url = "https://api.lyft.com/v1/cost?start_lat=37.7763&amp;start_lng=-122.3918&amp;end_lat=37.7972&amp;end_lng=-122.4533&access_token=";
+        var url = "https://api.lyft.com/v1/cost?start_lat=37.7763&amp;start_lng=-122.3918&amp;end_lat=37.7972&amp;end_lng=-122.4533&access_token=Lzzh7ppaO+gPIDlRhIdDDHlOtYVcO0o12Z7SnpEJ9TIfEnb0HUFF2K+n9OvPez+vgH8tdK82GmYqKV/e/jBL7LObrg/RAE9aHhAfeAOVs3YbNeTl67rc7+Y=";
         $.ajax({
             type: 'GET',
             url: url,
+          
             dataType: 'json',
             success: function (data) {
                 console.log(data)
