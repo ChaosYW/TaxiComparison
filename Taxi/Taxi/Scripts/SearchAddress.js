@@ -23,13 +23,17 @@ $(document).ready(function () {
 
     // Calculate Route
     $("#btTest").click(function () {
-        console.log("Start");
-        var url = "https://api.uber.com/v1/estimates/price?start_latitude=8.969145&start_longitude=-79.5177675&end_latitude=8.984104&end_longitude=-79.517467&server_token=tv52A1T0X3I6osqh7zX4b76O_Usvmth6HQI5QWkp";
-
-        $.getJSON(url, function (data) {
-            console.log(data);
+        
+        var url = "https://api.lyft.com/v1/cost?start_lat=37.7763&amp;start_lng=-122.3918&amp;end_lat=37.7972&amp;end_lng=-122.4533&access_token=";
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data)
+            },
+            async: false
         });
-        console.log("Hello");
     });
     $("#btSearch").click(function () {
 
@@ -92,20 +96,6 @@ $(document).ready(function () {
             url: Uberurl,
             dataType: 'json',
             success: function (data) {
-                //colsole.log('============');
-                //console.log(data);
-                //console.log(data.length);
-                //console.log(data);
-                //for (i = 0; i < data.length; i++)
-                //{
-                //    var displayname = data[i].display_name;
-                //    var type = 'Uber';
-                //    var price = data[i].estimate;
-                //    var dataitem = { Name: displayname, Type: type, Price: price };
-                //    console.log(data[i]);
-                //    dataSet.push(dataitem);
-                //}
-                //colsole.log('============');
                 Uberlist = data.prices;
             },
             async: false
@@ -176,6 +166,8 @@ $(document).ready(function () {
          
          
         });
+
+
         
     });
 
