@@ -19,26 +19,20 @@ $(document).ready(function () {
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
     directionsDisplay.setMap(map);
 
-    // END----------Initial Map function
+    var lyftdata;
 
     // Calculate Route
     $("#btTest").click(function () {
-        
-        var url = "https://api.lyft.com/v1/cost?start_lat=37.7763&start_lng=-122.3918&end_lat=37.7972&end_lng=-122.4533";
-        $.ajax({
-            type: 'GET',
-            url: url,
-          
-            dataType: 'json',
-            success: function (data) {
-                console.log(data)
-            },
-            async: false
-        });
+       
+         
     });
+
     $("#btSearch").click(function () {
 
         clearDataTable();
+
+        
+
 
         dataSet = [];
         AddressFrom = $("#iptFrom").val();
@@ -87,6 +81,18 @@ $(document).ready(function () {
             async: false
         });
 
+        var url = "https://allorigins.me/get?url=" + encodeURIComponent("https://api.lyft.com/v1/cost?start_lat=" + FromLat + "&start_lng=" + FromLong + "&end_lat=" + ToLat + "&end_lng=" + ToLong + "") + "&callback=?";
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            success: function (data) {
+
+                lyftdata = JSON.parse(data.contents);
+                console.log(lyftdata);
+            },
+            async: false
+        });
 
 
 
@@ -101,8 +107,10 @@ $(document).ready(function () {
             },
             async: false
         });
+
         console.log(Uberlist);
 
+        //var uberEstimation = { ServiceName: "Uber", Black: 0.00, BlackSUV: 0.00, CarSeat: 0.00, UberX: 0.00, UberXL: 0.00, Distance:0.000};
         for (i = 0; i < Uberlist.length; i++)
         {
             var CarType = Uberlist[i].display_name;
