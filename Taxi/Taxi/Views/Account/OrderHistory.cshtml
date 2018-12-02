@@ -18,7 +18,10 @@
             @Html.DisplayNameFor(model => model.ServiceName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.AddressFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressTo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.HighPrice)
@@ -32,12 +35,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Distance)
         </th>
-         
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        
+
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
@@ -45,7 +47,10 @@
             @Html.DisplayFor(modelItem => item.ServiceName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @Html.DisplayFor(modelItem => item.AddressFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressTo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.HighPrice)
@@ -59,7 +64,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Distance)
         </td>
-       
+
     </tr>
 }
 

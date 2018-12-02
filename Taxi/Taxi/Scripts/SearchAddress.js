@@ -20,6 +20,12 @@ $(document).ready(function () {
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
     directionsDisplay.setMap(map);
 
+    //$("#btTest").click(function () {
+    //    $.getJSON('https://api.allorigins.ml/get?url=' + encodeURIComponent('https://api.lyft.com/v1/cost?start_lat=37.7763&start_lng=-122.3918&end_lat=37.7972&end_lng=-122.4533') + '&callback=?', function (data) {
+    //        alert(data.contents);
+    //    });
+    //});
+
     var lyftdata;
 
     // Calculate Route
@@ -103,7 +109,8 @@ $(document).ready(function () {
             async: false
         });
         var lyftlist;
-        var url = "https://allorigins.me/get?url=" + encodeURIComponent("https://api.lyft.com/v1/cost?start_lat=" + FromLat + "&start_lng=" + FromLong + "&end_lat=" + ToLat + "&end_lng=" + ToLong + "") + "&callback=?";
+        var url = "https://api.allorigins.ml/get?url=" + encodeURIComponent("https://api.lyft.com/v1/cost?start_lat=" + FromLat + "&start_lng=" + FromLong + "&end_lat=" + ToLat + "&end_lng=" + ToLong + "") + "&callback=?";
+        //var url = "https://api.allorigins.ml/get?url=" + encodeURIComponent("https://api.lyft.com/v1/cost?start_lat=37.7763&start_lng=-122.3918&end_lat=37.7972&end_lng=-122.4533") + "&callback=?";
         $.ajax({
             type: 'GET',
             url: url,
@@ -157,7 +164,7 @@ $(document).ready(function () {
                             var HighPrice = lyftlist.cost_estimates[i].estimated_cost_cents_max / 100;
                             var LowPrice = lyftlist.cost_estimates[i].estimated_cost_cents_min / 100;
                             var Product_id = lyftlist.cost_estimates[i].price_quote_id;
-                            var Price = LowPrice+ ' - ' + HighPrice;
+                            var Price = '$' + LowPrice+ ' - ' + HighPrice;
                             dataSet.push({
                                 CarType,
                                 ServiceName,
