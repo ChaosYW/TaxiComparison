@@ -189,11 +189,11 @@ $(document).ready(function () {
                             columns: [
                                 { data: 'CarType' },
                                 { data: 'ServiceName' },
-                                { data: 'Price' },
+                                { data: 'Price', "visible": false },
                                 { data: 'Distance', "visible": false },
                                 { data: 'Product_id', "visible": false },
-                                { data: 'HighPrice', "visible": false },
-                                { data: 'LowPrice', "visible": false },
+                                { data: 'HighPrice' },
+                                { data: 'LowPrice' },
                                 {
                                     "data": null, // can be null or undefined
                                     "defaultContent": "<button>Click to Order</button>"

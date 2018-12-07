@@ -25,7 +25,6 @@ namespace Taxi.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Taxi_Price> Taxi_Prices { get; set; }
         public virtual DbSet<TaxiOrder> TaxiOrders { get; set; }
     }
 }
