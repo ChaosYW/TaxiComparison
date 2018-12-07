@@ -1,5 +1,5 @@
 # TaxiComparison
 
-Application URL: http://taxicompareapp.azurewebsites.net/
+Application URL: https://taxicompareapp.azurewebsites.net/
 username: test@abc.com
 password: test123
