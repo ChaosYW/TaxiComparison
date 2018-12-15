@@ -20,11 +20,7 @@ $(document).ready(function () {
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
     directionsDisplay.setMap(map);
 
-    //$("#btTest").click(function () {
-    //    $.getJSON('https://api.allorigins.ml/get?url=' + encodeURIComponent('https://api.lyft.com/v1/cost?start_lat=37.7763&start_lng=-122.3918&end_lat=37.7972&end_lng=-122.4533') + '&callback=?', function (data) {
-    //        alert(data.contents);
-    //    });
-    //});
+
 
     var lyftdata;
 
@@ -49,7 +45,7 @@ $(document).ready(function () {
         });
 
 
-
+        //get goolge longitute and latitude
         var googleFromURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + AddressFrom + "&key=AIzaSyDZ2b3ucOfoCQrm3eqU8qC-1EKP_P2Sh2M";
 
         $.ajax({
@@ -108,6 +104,8 @@ $(document).ready(function () {
             },
             async: false
         });
+
+        // call lyft api to get estimatioon price
         var lyftlist;
         var url = "https://api.allorigins.ml/get?url=" + encodeURIComponent("https://api.lyft.com/v1/cost?start_lat=" + FromLat + "&start_lng=" + FromLong + "&end_lat=" + ToLat + "&end_lng=" + ToLong + "") + "&callback=?";
         //var url = "https://api.allorigins.ml/get?url=" + encodeURIComponent("https://api.lyft.com/v1/cost?start_lat=37.7763&start_lng=-122.3918&end_lat=37.7972&end_lng=-122.4533") + "&callback=?";
@@ -121,7 +119,7 @@ $(document).ready(function () {
                 
 
                 
-
+                //Call Uber API to get Uber estimation price
                 var Uberurl = "https://api.uber.com/v1/estimates/price?start_latitude=" + FromLat + "&start_longitude=" + FromLong + "&end_latitude=" + ToLat + "&end_longitude=" + ToLong + "&server_token=tv52A1T0X3I6osqh7zX4b76O_Usvmth6HQI5QWkp";
                 var Uberlist;
                 $.ajax({
@@ -183,7 +181,7 @@ $(document).ready(function () {
  
                         }
                         console.log(dataSet);
-
+                        // bind table from two API calls
                         var searchtable = $('#tbSearchResult').DataTable({
                             data: dataSet,
                             columns: [
@@ -203,6 +201,8 @@ $(document).ready(function () {
 
 
                         });
+
+                        //call backedn code to save order
                         $('#tbSearchResult tbody').on('click', 'button', function () {
                             
 
